@@ -1,0 +1,190 @@
+
+
+
+LIEN VERS ONEDRIVE POUR PLUS DE LISIBILITE : https://ecolescreatives-my.sharepoint.com/:w:/p/l_codina_mtp/EaXVW7WZER1Ajf_1_xMgnkABCnLb55E5PsbRC15PX00_uA?e=FZwpoJ
+
+
+
+
+
+
+
+Layers of Fears 
+
+Analyse Théorique : 
+
+  
+
+1. De quel type de jeu s’agit-il ? 
+
+Layers of Fear est un jeu d'horreur psychologique en vue 1ère personne, orienté sur la narration et l'exploration.  
+
+Il n’y a pas de combats, l'horreur se manifeste par des éléments visuels et sonores dans l'esprit d'un artiste tourmenté. 
+
+  
+
+2. Après une heure de jeu, nommez les différentes mécaniques de gameplay rencontrées.   
+
+- Exploration en vue 1ère personne : le joueur explore un manoir mystérieux.   
+
+- Interaction avec les objets : ouvrir, examiner et manipuler les éléments du décor.   
+
+- Résolution de puzzles : énigmes qui déclenchent des changements d'environnement.   
+
+- Événements : phénomènes paranormaux et illusions.   
+
+- Narration environnementale : lettres, peintures, objets qui racontent l’histoire. 
+
+  
+
+3. Ce jeu mise sur l'immersion du joueur. Expliquez comment cela est mis en place.  
+
+L’immersion est renforcée par :   
+
+- L’ambiance sonore (craquements, murmures, musique oppressante).   
+
+- Les visuels et l’éclairage sombre qui amplifient le sentiment d’isolement et de peur.  
+
+- La dynamique des pièces : le manoir change de configuration, désorientant le joueur.   
+
+- Une narration qui se découvre à travers l’exploration. 
+
+  
+
+ 
+
+4. Qu’est-ce que le GameFeel ? Donnez une liste des détails perçus durant la partie. 
+
+Le GameFeel, c’est le ressenti du joueur face au gameplay, aux éléments visuels, sonores, et aux interactions.  
+
+ 
+
+Comme : 
+
+- Les grincements de portes et de planchers.   
+
+- Les variations d’éclairage qui altèrent la perception des objets.   
+
+- Les changements de perspective et de pièce.   
+
+- Les effets visuels de distorsion qui simulent la folie.   
+
+- Des objets qui semblent "vivants", augmentant le sentiment de paranoïa. (Comme les poupées) 
+
+  
+
+5. Comment est mis en place le Game over dans ce jeu ? 
+
+Le Game over n’en est pas vraiment un : en cas d'échec, le joueur revient en arrière sans perdre de progression. Il se réveille comme s'il était tombé dans les pommes, cela contribue à l’ambiance de répétition et de folie sans casser le fil de l’histoire et l’immersion. 
+
+  
+
+ 
+
+6. Le jeu tente de perdre le joueur dans un labyrinthe dynamique. Comment cela est-il mis en place techniquement ?   
+
+Les changements dynamiques du manoir reposent sur des déclencheurs :   
+
+- Des triggers box activent des modifications d’environnement.   
+
+- Des scripts/blueprint qui ajoutent ou retirent des éléments et modifient la disposition des salles.   
+
+- Des changements de perspective pour créer des illusions.   
+
+  
+
+7. Personnel : le jeu vous a-t-il plu / déplu ? Pourquoi ?   
+
+Personnellement, j'ai trouvé Layers of Fear captivant, avec son ambiance immersive et une narration subtile qui se dévoile progressivement. 
+
+ La peur vient de l'atmosphère et non d'ennemis, ce qui en fait une expérience unique. 
+
+ 
+
+D’un autre coté ce n’est pas un style de jeu pour moi, le jeu était à mon sens trop lent et trop répétitif (entrer dans une pièce, chercher un objet, sortir de la pièce, entrer dans une autre pièce etc.…) 
+
+J’ai très vite été lassé du jeu et de ses mécaniques répétitives malgré les points positifs de ce jeu. 
+
+ 
+
+Pratique :  
+
+1. Définissez, selon vous, une des mécaniques de gameplay principale du jeu, et reproduisez là sous le moteur de jeu Unreal Engine 5 (vous pouvez faire cette mécanique sur un projet de n’importe quel type, en 2D ou 3D, du moment que l’on “ressent” une similitude avec la mécanique originale).  
+
+ 
+
+Mécanique choisie : 
+
+J’ai choisi la mécanique de l’ouverture de porte, qui permet d’ouvrir la porte grâce au clic gauche de la souris maintenue ainsi que la caméra qui permet de diriger l’ouverture de la porte. 
+
+Bonus :  
+
+1) En plus de la mécanique de la porte, j’ai décidé de rajouter l’UI qui permet de voir si l’on peut interagir avec un objet quand on se rapproche comme dans le jeu. (En l'occurrence la porte pour cette mécanique) Pour renforcer l’immersion de cette mécanique. 
+
+ 
+
+2) J’ai également rajouté une petite mécanique intéressante du jeu, qui permet d’activer une animation (une séquence) quand on rentre dans un trigger, car cette mécanique est très importante dans le jeu et elle renforce grandement l’aspect “Horreur’’ du jeu. 
+
+2. Décrivez, étape par étape, comment vous avez mis en place cette mécanique.  
+
+ 
+
+Tout d’abord pour réaliser cette mécanique j’avais besoin de deux objets : une porte ainsi qu’un ‘’Player”, plus précisément d’une caméra qui permet de diriger l’ouverture de la porte selon ou la caméra regarde. 
+
+J’ai créé dès le début un blueprint Interface, qui me permettra par la suite de communiquer entre plusieurs scripts (ça permet de définir des fonctions que d'autres Blueprints peuvent implémenter en l'occurrence : OpenDoor). 
+
+ 
+
+J’ai ensuite créé un blueprint dans lequel j’ai ajouté un static mesh pour ajouter le modelé de ma porte.  
+
+La majorité du code pour cette mécanique se trouve dans le script du Player car c’est la caméra qui va diriger le mouvement de la porte. 
+
+Donc dans le blueprint du Player : 
+
+J’ai ajouté une action dans le blueprint qui représente le clic gauche de la souris. 
+
+Dans le script du Player j’ai créé un boolean “IsHoldingLeftMouse” 
+
+qui me permet de détecter si le bouton de la souris est maintenu, je l’ai SET 2 fois pour créer les 2 possibilités (OUI / NON) 
+
+J’ai donc relié l’action qui représente le clic gauche de la souris avec les 2 possibilités (si le joueur ne maintient pas le clic gauche alors il ne se passe rien et si le joueur maintient le clic gauche alors on poursuit le script) 
+
+ 
+
+Par la suite j’ai utilisé Line Trace By Channel qui est une ligne de détection qui est projeté par la caméra, elle permettra donc de rentrer en contact avec la porte et d’activé son ouverture. J’ai connecté un Get Actor Location et Rotation pour prendre la position de la caméra et savoir d’où part le laser. J’ai également décidé de son champ d’action pour choisir la distance à laquelle il pourra détecter la porte à l’aide d’un multiplicateur et d’une addition en partant de la référence de location et rotation de la caméra. 
+
+A la suite du Line Trace by Channel j’ajoute un Break Hit Result (a la sortie du out Hit) qui est un nœud qui permet d'accéder facilement aux informations du line Trace, je m’en sers avec un component ‘’HasTag’’ qui permet de définir que l’action se déclencheras seulement si le static mesh qui est en contact a le tag “Door” que j’ai ajouté sur le static mesh de ma porte. 
+
+J’ajoute un autre Boolean “IsDoorDetected” qui permet de savoir si le Line Trace est rentré en contact avec un mesh qui porte le tag ‘’Door” 
+
+Après ça je rajoute une Branch avec IsDoorDetected SET 2 fois avec (OUI/NON), si c’est non alors je ne poursuis pas le script et si Oui alors je continue en utilisant le nœud que j’ai créé sur le blueprint Interface ‘’OpenDoor’’ et j’ajoute à la limite un ‘’Delay’’ très faible comme valeur de sécurité puis le boucle le script en connectant le Delay au Line Trace By Channel pour recalculer à chaque moment si je suis toujours en collision avec la porte. 
+
+ 
+
+A savoir que j’ai également créer un Float “Action Value X” qui représente l’ouverture de la porte. Je l’utilise plusieurs fois durant le script notamment dans la caméra input qui Player pour que ça soit pris en compte. (Voir script) 
+
+ 
+
+Pour finir sur le script ou se trouve le static mesh de la porte j’ai juste ajoute le ‘’OpenDoor’ puis j’ai utilisé une Branch en récupérant l'action value X si le Branch était true, j’ai ensuite utilisé un add relative rotation qui permet l’ouverture de la porte, j’ai créé un float “Smothness” qui gère la vitesse a lequel s’ouvre la porte et je l’ai relié à la rotation de la porte sur l’axe Z. 
+
+3. Expliquez en quoi cette mécanique est primordiale tout au long du jeu. 
+
+ 
+
+Cette mécanique est une des mécaniques les plus utilisée du jeu. Tout au long du jeu nous devons ouvrir des portes pour progresser dans les niveaux, et le fait que ça soit nous qui dirigeons l’ouverture renforce l’immersion et nous permet de ne pas être “sorti” du jeu avec une ouverture de porte classique à l’aide d’une timeline.  
+
+ 
+
+ 
+
+4. Pourquoi cette mécanique vous a-t-elle plu ? 
+
+ 
+
+Cette mécanique m’a particulièrement plu car elle est technique à mettre en place même si ça n’en a pas l’air, il faut calculer beaucoup de facteurs pour que ça ne pose pas de problèmes avec les éléments qui l’entourent, et j’ai également beaucoup apprécié l’aspect réaliste de cette mécanique. 
+
+ 
+
+PS : je n’ai malheureusement pas réussi a bloqué l’angle d’ouverture de la porte comme on l’avait en classe, ce qui fait que la porte peut s’ouvrir et traversé les décors :/ 
+
+Je sais à peu près comment bloquer son angle d’ouverture mais je n’ai pas réussi à l’implémenter dans mon code  
